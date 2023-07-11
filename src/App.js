@@ -54,7 +54,7 @@ function App() {
         </div>
       </div>
       <Modal
-        title="Đăng nhập Facebook/Google/AppleId để tiếp tục"
+        title="Đăng nhập Facebook để tiếp tục"
         open={isModalOpen}
         okText='Login'
         onOk={handleOk} onCancel={() => setisModalOpen(false)}>
