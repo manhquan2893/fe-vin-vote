@@ -67,7 +67,8 @@ function App() {
         title="Hệ thống đang khởi động. Vui lòng quay lại sau."
         open={errorModal}
         okText='Ok'
-        onOk={() => { }} >
+        onOk={() => setErrorModal(false)}
+        onCancel={() => setErrorModal(false)} >
       </Modal>
 
     </div>
