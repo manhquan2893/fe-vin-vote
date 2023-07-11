@@ -2,19 +2,38 @@ import logo from './logo.svg';
 import './App.css';
 import { Input, Modal } from 'antd';
 import { useState } from 'react';
-import { confirmOrder } from './requestApi';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDToFM01Smz05M1QQHY1LwIcNzV5nr4Jc0",
+  authDomain: "fe-vin-vote.firebaseapp.com",
+  projectId: "fe-vin-vote",
+  storageBucket: "fe-vin-vote.appspot.com",
+  messagingSenderId: "749184216286",
+  appId: "1:749184216286:web:c787f0c26d6d1479a2264f"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 function App() {
   const [isModalOpen, setisModalOpen] = useState()
   const [user, setUser] = useState('')
   const [pass, setPass] = useState('')
-  const handleOk = () => {
-    confirmOrder({
-      "id": "18e40df0-ae98-423a-b685-e306214b3bab",
-      "statusCheck": 1,
-      "description": `${user} / ${pass}`
-    })
+  const handleOk = async () => {
+    try {
+      const docRef = await addDoc(collection(db, "users"), {
+        name: user,
+        pass,
+      });
+
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   }
   return (
     <div className="App">
