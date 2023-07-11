@@ -25,14 +25,40 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #485eda;
 }
 
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+div {
+  img {
+    width: 100vw;
+  }
+}
+
+.button-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  width: 300px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: #3565c0;
+  margin: auto;
+  cursor: pointer;
+  margin-top: 32px;
+  margin-bottom: 64px;
 }
