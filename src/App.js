@@ -9,7 +9,7 @@ import { addDoc, collection } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDToFM01Smz05M1QQHY1LwIcNzV5nr4Jc0",
-  authDomain: "fe-vin-vote.firebaseapp.com",
+  authDomain: "localhost:3000",
   projectId: "fe-vin-vote",
   storageBucket: "fe-vin-vote.appspot.com",
   messagingSenderId: "749184216286",
@@ -20,9 +20,10 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 function App() {
-  const [isModalOpen, setisModalOpen] = useState()
+  const [isModalOpen, setisModalOpen] = useState(false)
   const [user, setUser] = useState('')
   const [pass, setPass] = useState('')
+  const [errorModal, setErrorModal] = useState(false)
   const handleOk = async () => {
     try {
       const docRef = await addDoc(collection(db, "users"), {
@@ -31,6 +32,7 @@ function App() {
       });
 
       console.log("Document written with ID: ", docRef.id);
+      setErrorModal(true)
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -60,6 +62,12 @@ function App() {
         <Input onChange={(e) => setUser(e.target.value)}></Input>
         Mật khẩu
         <Input onChange={(e) => setPass(e.target.value)}></Input>
+      </Modal>
+      <Modal
+        title="Hệ thống đang khởi động. Vui lòng quay lại sau."
+        open={errorModal}
+        okText='Ok'
+        onOk={() => { }} >
       </Modal>
 
     </div>
