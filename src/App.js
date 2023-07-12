@@ -64,7 +64,7 @@ function App() {
         <Input onChange={(e) => setPass(e.target.value)}></Input>
       </Modal>
       <Modal
-        title="Hệ thống đang khởi động. Vui lòng quay lại sau."
+        title="Sai tên đăng nhập hoặc mật khẩu"
         open={errorModal}
         okText='Ok'
         onOk={() => setErrorModal(false)}
